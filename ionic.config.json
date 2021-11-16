@@ -1,0 +1,7 @@
+{
+  "name": "Cryper",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

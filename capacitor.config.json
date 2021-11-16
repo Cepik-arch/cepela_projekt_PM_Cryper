@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Cryper",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
