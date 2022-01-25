@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-title>
-      Tab 2
+      Coin Market Cap
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,39 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Coin Market Cap</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid class="ion-margin">
+    <ion-row class="row header">
+      <ion-col class="col" id="col1">#</ion-col>
+      <ion-col class="col" id="col2">Name</ion-col>
+      <ion-col class="col" id="col3">Price</ion-col>
+      <ion-col class="col" id="col4">Cap</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let crypto of cryptos,let i = index" class="row">
+      <ion-col class="col" id="col1">{{ i + 1 }}</ion-col>
+      <ion-col class="col" id="col2">
+        <ion-thumbnail><ion-img style="margin: auto"  [src]="CryptoCompareUrl + crypto.coinInfo.ImageUrl"></ion-img></ion-thumbnail><span>{{ crypto.coinInfo.Name }}</span></ion-col>
+      <ion-col class="col" id="col3">
+      <div *ngIf="crypto.value == undefined; else elseBlock">
+        <p>undef</p>
+      </div>
+      <ng-template #elseBlock>
+        <p>$ {{ crypto.value.USD.PRICE | number : '1.2-2' }}</p>
+      </ng-template>
+      </ion-col>
+      <ion-col class="col" id="col4">
+        <div *ngIf="crypto.display == undefined; else elseBlock2">
+          <p>undef</p>
+        </div>
+        <ng-template #elseBlock2>
+          <p>{{ crypto.display.USD.MKTCAP}}</p>
+        </ng-template>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
